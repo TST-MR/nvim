@@ -281,6 +281,7 @@ require("lazy").setup({
 				topdelete = { text = "‾" },
 				changedelete = { text = "~" },
 			},
+			current_line_blame = true,
 		},
 	},
 
@@ -303,6 +304,14 @@ require("lazy").setup({
 			{ "<leader>go", "<cmd>Neogit pull<cr>", desc = "Git Pull" },
 			{ "<leader>gp", "<cmd>Neogit push<cr>", desc = "Git Push" },
 		},
+	},
+
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+		-- use opts = {} for passing setup options
+		-- this is equivalent to setup({}) function
 	},
 
 	-- NOTE: Plugins can also be configured to run Lua code when they are loaded.
@@ -997,7 +1006,19 @@ require("lazy").setup({
 			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
-			require("mini.surround").setup()
+			require("mini.surround").setup({
+				mappings = {
+					add = "csa", -- Add surrounding in Normal and Visual modes
+					delete = "csd", -- Delete surrounding
+					find = "csf", -- Find surrounding (to the right)
+					find_left = "csF", -- Find surrounding (to the left)
+					highlight = "csh", -- Highlight surrounding
+					replace = "csr", -- Replace surrounding
+
+					suffix_last = "l", -- Suffix to search with "prev" method
+					suffix_next = "n", -- Suffix to search with "next" method
+				},
+			})
 
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
