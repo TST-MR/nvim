@@ -1,0 +1,151 @@
+{
+	"tr": {
+		"prefix": "tr",
+		"body": [
+			"try {",
+			"$1",
+			"} catch(Exception \\$e) {",
+			"}"
+		],
+		"description": "Try-Catch"
+	},
+	"trj": {
+		"prefix": "trj",
+		"body": [
+			"try {",
+			"$1",
+			"} catch(Exception \\$e) {",
+			"echo json_encode(['error' => \\$e->getMessage()]);",
+			"}"
+		],
+		"description": "Try-Catch json echo"
+	},
+	"trtr": {
+		"prefix": "trtr",
+		"body": [
+			"try {",
+			"ORM::get_db()->beginTransaction();",
+			"",
+			"$1",
+			"",
+			"ORM::get_db()->commit();",
+			"} catch(Exception \\$e) {",
+			"if(ORM::get_db()->inTransaction())",
+			"ORM::get_db()->rollBack();",
+			"}"
+		],
+		"description": "Try-Catch mit PDO Transaction"
+	},
+	"trtrj": {
+		"prefix": "trtrj",
+		"body": [
+			"try {",
+			"ORM::get_db()->beginTransaction();",
+			"",
+			"$1",
+			"",
+			"ORM::get_db()->commit();",
+			"} catch(Exception \\$e) {",
+			"if(ORM::get_db()->inTransaction())",
+			"ORM::get_db()->rollBack();",
+			"",
+			"echo json_encode(['error' => \\$e->getMessage()]);",
+			"}"
+		],
+		"description": "Try-Catch mit PDO Transaction"
+	},
+	"date": {
+		"prefix": "date",
+		"body": "date(\"Y-m-d H:i:s\")"
+	},
+	"user": {
+		"prefix": "user",
+		"body": "User::get()->id"
+	},
+	"strict": {
+		"prefix": "strict",
+		"body": "declare(strict_types=1);"
+	},
+	"exception": {
+		"prefix": "ex",
+		"body": "throw new Exception($1);"
+	},
+	"for_table": {
+		"prefix": "ft",
+		"body": [
+			"ORM::for_table('$1')",
+			"$2"
+		]
+	},
+	"create": {
+		"prefix": "ftc",
+		"body": [
+			"ORM::for_table('$1')->create([",
+			"$2",
+			"]);"
+		]
+	},
+	"join": {
+		"prefix": "jo",
+		"body": [
+			"->join('$1', '$3', '$2')",
+			"$4"
+		]
+	},
+	"left_outer_join": {
+		"prefix": "ljo",
+		"body": [
+			"->left_outer_join('$1', '$3', '$2')",
+			"$4"
+		]
+	},
+	"where_equal": {
+		"prefix": "we",
+		"body": [
+			"->where_equal('$1', $2)",
+			"$3"
+		]
+	},
+	"where_not_equal": {
+		"prefix": "wne",
+		"body": [
+			"->where_not_equal('$1', $2)",
+			"$3"
+		]
+	},
+	"where_like": {
+		"prefix": "wl",
+		"body": [
+			"->where_like('$1', $2)",
+			"$3"
+		]
+	},
+	"where_not_like": {
+		"prefix": "wnl",
+		"body": [
+			"->where_not_like('$1', $2)",
+			"$3"
+		]
+	},
+	"find_one": {
+		"prefix": "fo",
+		"body": [
+			"->find_one();",
+			"$1"
+		]
+	},
+	"find_many": {
+		"prefix": "fm",
+		"body": [
+			"->find_many();",
+			"$1"
+		]
+	},
+	"find_array": {
+		"prefix": "fa",
+		"body": [
+			"->find_array();",
+			"$1"
+		]
+	}
+}

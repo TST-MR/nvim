@@ -300,9 +300,7 @@ require("lazy").setup({
 		},
 		cmd = "Neogit",
 		keys = {
-			{ "<leader>gg", "<cmd>Neogit cwd=%:p:h<cr>", desc = "Show Neogit UI" },
-			{ "<leader>go", "<cmd>Neogit pull<cr>", desc = "Git Pull" },
-			{ "<leader>gp", "<cmd>Neogit push<cr>", desc = "Git Push" },
+			{ "<leader>g", "<cmd>Neogit cwd=%:p:h<cr>", desc = "Show Neogit UI" },
 		},
 	},
 
@@ -443,6 +441,7 @@ require("lazy").setup({
 				--   },
 				-- },
 				-- pickers = {}
+
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
@@ -879,6 +878,9 @@ require("lazy").setup({
 					end
 					return "make install_jsregexp"
 				end)(),
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snippets" })
+				end,
 				dependencies = {
 					-- `friendly-snippets` contains a variety of premade snippets.
 					--    See the README about individual language/framework/plugin snippets:
@@ -919,7 +921,8 @@ require("lazy").setup({
 				-- <c-k>: Toggle signature help
 				--
 				-- See :h blink-cmp-config-keymap for defining your own keymap
-				preset = "default",
+				-- preset = "default",
+				preset = "enter",
 
 				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -1042,7 +1045,7 @@ require("lazy").setup({
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		main = "nvim-treesitter.configs", -- Sets main module to use for opts
+		main = "nvim-treesitter.config", -- Sets main module to use for opts
 		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 		opts = {
 			ensure_installed = {
@@ -1081,6 +1084,20 @@ require("lazy").setup({
 		"supermaven-inc/supermaven-nvim",
 		config = function()
 			require("supermaven-nvim").setup({})
+		end,
+	},
+
+	{
+		"tpope/vim-dadbod",
+	},
+	{
+		"kristijanhusak/vim-dadbod-completion",
+	},
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		init = function()
+			-- vim.g.db_ui_use_nerd_fonts = 1
+			-- vim.g.db_ui_save_location = "../"
 		end,
 	},
 
@@ -1134,3 +1151,18 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+vim.keymap.set("n", "<leader>oi", "<cmd>e ~/.config/nvim/init.lua<CR>")
+vim.keymap.set("n", "<leader>os", "<cmd>e ~/.config/nvim/snippets/php.json<CR>")
+vim.keymap.set("n", "<leader>db", "<cmd>DBUI<CR>")
+
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+-- vim.o.expandtab = true
+vim.o.expandtab = false
+vim.o.smartindent = true
+
+vim.o.wrap = false
+vim.o.swapfile = false
+vim.o.backup = false
