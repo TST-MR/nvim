@@ -1080,19 +1080,19 @@ require("lazy").setup({
 		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	},
 
-	{
-		"tpope/vim-dadbod",
-	},
-	{
-		"kristijanhusak/vim-dadbod-completion",
-	},
-	{
-		"kristijanhusak/vim-dadbod-ui",
-		init = function()
-			-- vim.g.db_ui_use_nerd_fonts = 1
-			-- vim.g.db_ui_save_location = "../"
-		end,
-	},
+	-- {
+	-- 	"tpope/vim-dadbod",
+	-- },
+	-- {
+	-- 	"kristijanhusak/vim-dadbod-completion",
+	-- },
+	-- {
+	-- 	"kristijanhusak/vim-dadbod-ui",
+	-- 	init = function()
+	-- 		-- vim.g.db_ui_use_nerd_fonts = 1
+	-- 		-- vim.g.db_ui_save_location = "../"
+	-- 	end,
+	-- },
 
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -1102,6 +1102,18 @@ require("lazy").setup({
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {},
+	},
+
+	{
+		"Laischor/nvim-sql",
+		build = "make build",
+		config = function()
+			require("sqledit").setup({
+				-- max_rows = 500,
+				-- confirm_prod_writes = true,
+				run_key = "<localleader>dr",
+			})
+		end,
 	},
 
 	-- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
@@ -1157,7 +1169,13 @@ require("lazy").setup({
 
 vim.keymap.set("n", "<leader>oi", "<cmd>e ~/.config/nvim/init.lua<CR>")
 vim.keymap.set("n", "<leader>os", "<cmd>e ~/.config/nvim/snippets/php.json<CR>")
-vim.keymap.set("n", "<leader>db", "<cmd>DBUI<CR>")
+vim.keymap.set("n", "<leader>dc", "<cmd>Sqledit connect<CR>")
+vim.keymap.set("n", "<leader>ds", "<cmd>Sqledit switch<CR>")
+vim.keymap.set("n", "<leader>dq", "<cmd>Sqledit query<CR>")
+vim.keymap.set("n", "<leader>r", "vip<cmd>Sqledit run<CR>")
+vim.keymap.set("n", "<leader>df", "<cmd>Sqledit filter<CR>")
+vim.keymap.set("n", "<leader>dr", "<cmd>Sqledit refilter<CR>")
+vim.keymap.set("n", "<leader>dt", "<cmd>Sqledit table<CR>")
 
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
