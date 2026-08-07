@@ -1173,9 +1173,9 @@ vim.keymap.set("n", "<leader>dc", "<cmd>Sqledit connect<CR>")
 vim.keymap.set("n", "<leader>ds", "<cmd>Sqledit switch<CR>")
 vim.keymap.set("n", "<leader>dq", "<cmd>Sqledit query<CR>")
 vim.keymap.set("n", "<leader>r", "vip<cmd>Sqledit run<CR>")
+vim.keymap.set("n", "<leader>dt", "<cmd>Sqledit tables<CR>")
 vim.keymap.set("n", "<leader>df", "<cmd>Sqledit filter<CR>")
 vim.keymap.set("n", "<leader>dr", "<cmd>Sqledit refilter<CR>")
-vim.keymap.set("n", "<leader>dt", "<cmd>Sqledit table<CR>")
 
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
